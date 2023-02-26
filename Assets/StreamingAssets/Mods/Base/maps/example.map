@@ -1,0 +1,7 @@
+[meta]
+id     = "example"
+width  = 50
+height = 50
+
+[content]
+0 0 = tinytale:0

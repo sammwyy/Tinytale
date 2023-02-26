@@ -1,0 +1,8 @@
+{
+    "id": "tinytale",
+    "name": "TinyTale",
+    "description": "Main game content",
+    "version": "0.0.1",
+    "authors": ["Sammwy"],
+    "gamemode": "main.js"
+}

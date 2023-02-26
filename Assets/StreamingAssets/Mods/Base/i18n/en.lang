@@ -1,0 +1,8 @@
+# Languages
+lang.en = English
+lang.es = Spanish
+
+# Errors
+errors.unknown = An unknown error has ocurred.
+errors.mods = Error loading mod
+errors.mods.no-mod-descriptor = No mod descriptor file (mod.json) for {mod:dir}
