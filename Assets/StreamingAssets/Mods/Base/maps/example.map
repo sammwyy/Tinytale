@@ -1,7 +1,62 @@
-[meta]
-id     = "example"
-width  = 50
-height = 50
-
-[content]
-0 0 = tinytale:0
+{
+  "id": "example",
+  "width": 50,
+  "height": 50,
+  "layers": [
+    {
+      "id": 0,
+      "content": [
+        {
+          "x": 0,
+          "y": 2,
+          "tile": "tinytale:overworld:0"
+        },
+        {
+          "x": 1,
+          "y": 2,
+          "tile": "tinytale:overworld:1"
+        },
+        {
+          "x": 2,
+          "y": 2,
+          "tile": "tinytale:overworld:2"
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "tile": "tinytale:overworld:3"
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "tile": "tinytale:overworld:4"
+        },
+        {
+          "x": 2,
+          "y": 1,
+          "tile": "tinytale:overworld:5"
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "tile": "tinytale:overworld:6"
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "tile": "tinytale:overworld:7"
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "tile": "tinytale:overworld:8"
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "npc": "tinytale:john"
+        }
+      ]
+    }
+  ]
+}

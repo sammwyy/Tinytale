@@ -35,11 +35,8 @@ public class Resource<S>
         Type target = typeof(S);
         object value = null;
 
-        if (target == typeof(Translation))
-        {
-            value = Translation.LoadFromFile(this._path);
-        }
-        else if (target == typeof(Map))
+
+        if (target == typeof(Map))
         {
             value = Map.LoadFromFile(this._path);
         }
@@ -47,13 +44,17 @@ public class Resource<S>
         {
             value = Sound.LoadFromFile(this._path);
         }
-        else if (target == typeof(Sprite))
-        {
-            value = IMG2Sprite.instance.LoadNewSprite(this._path, 15);
-        }
         else if (target == typeof(Texture2D))
         {
-            value = IMG2Sprite.instance.LoadTexture(this._path);
+            value = IMG2Sprite.LoadTexture(this._path);
+        }
+        else if (target == typeof(Tilemap))
+        {
+            value = Tilemap.LoadFromFile(this._path);
+        }
+        else if (target == typeof(Translation))
+        {
+            value = Translation.LoadFromFile(this._path);
         }
 
         return (S)Convert.ChangeType(value, typeof(S));

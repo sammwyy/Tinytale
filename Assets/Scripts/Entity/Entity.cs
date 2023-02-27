@@ -10,34 +10,62 @@ public class Entity : MonoBehaviour
     public float RunSpeed = 0;
 
     private Animator _animator;
+    private SpriteRenderer _renderer;
+    private Rigidbody2D _rigidBody;
 
-    public bool IsAlive()
+    public bool IsAlive
     {
-        return this.Health > 0;
+        get { return this.Health > 0; }
+    }
+
+    public void Kill()
+    {
+        this.Health = 0;
+        this._renderer.enabled = false;
+    }
+
+    public void Spawn(float x, float y)
+    {
+        this.Health = this.MaxHealth;
+        this.Teleport(x, y);
+        this._renderer.enabled = true;
+    }
+
+    public void Teleport(float x, float y)
+    {
+        this.transform.position = new Vector2(x, y);
     }
 
     protected void Awake()
     {
         this._animator = this.GetComponent<Animator>();
+        this._renderer = this.GetComponent<SpriteRenderer>();
+        this._rigidBody = this.GetComponent<Rigidbody2D>();
+
+        this._renderer.enabled = false;
     }
 
     protected void Update()
     {
         // Handle animations.
-        if (this._animator)
+        if (this.IsAlive && this._animator)
         {
             this._animator.SetFloat("Animation", (float)this.Motion);
             this._animator.SetFloat("Variant", (float)this.Direction);
         }
+    }
 
+    protected void FixedUpdate()
+    {
         // Handle movement.
         bool walking = this.Motion == EntityMotion.WALKING;
         bool running = this.Motion == EntityMotion.RUNNING;
 
-        if (walking || running)
+        if (this.IsAlive && (walking || running))
         {
-            Vector3 movement = this.Direction.ToVector3D() * Time.deltaTime;
-            this.transform.Translate(movement * (walking ? this.WalkSpeed : this.RunSpeed));
+            Vector3 movement = this.Direction.ToVector3D();
+            float speed = (walking ? this.WalkSpeed : this.RunSpeed);
+            this._rigidBody.MovePosition(transform.position + movement * (speed * Time.deltaTime));
         }
     }
 }

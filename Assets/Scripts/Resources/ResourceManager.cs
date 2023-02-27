@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class ResourceManager
 {
+    private static ResourceManager _instance;
+
+    public static ResourceManager Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
     private Dictionary<string, Resource<Map>> _maps;
     private Dictionary<string, Resource<Sound>> _sounds;
-    private Dictionary<string, Resource<Sprite>> _sprites;
     private Dictionary<string, Resource<Texture2D>> _textures;
     private Dictionary<string, Resource<Tilemap>> _tilemaps;
     private Dictionary<string, Resource<Translation>> _translations;
 
     public ResourceManager()
     {
+        _instance = this;
+
         this._maps = new Dictionary<string, Resource<Map>>();
         this._sounds = new Dictionary<string, Resource<Sound>>();
-        this._sprites = new Dictionary<string, Resource<Sprite>>();
         this._textures = new Dictionary<string, Resource<Texture2D>>();
         this._tilemaps = new Dictionary<string, Resource<Tilemap>>();
         this._translations = new Dictionary<string, Resource<Translation>>();
@@ -28,6 +38,7 @@ public class ResourceManager
 
     public void Register(Resource<Map> resource)
     {
+        Debug.Log("[ResourceManager] Registered map: " + resource.ID);
         this._maps.Add(resource.ID, resource);
     }
 
@@ -43,6 +54,7 @@ public class ResourceManager
 
     public void Register(Resource<Sound> resource)
     {
+        Debug.Log("[ResourceManager] Registered sound: " + resource.ID);
         this._sounds.Add(resource.ID, resource);
     }
 
@@ -56,23 +68,9 @@ public class ResourceManager
         return resources.Count;
     }
 
-    public void Register(Resource<Sprite> resource)
-    {
-        this._sprites.Add(resource.ID, resource);
-    }
-
-    public int RegisterAll(List<Resource<Sprite>> resources)
-    {
-        foreach (Resource<Sprite> resource in resources)
-        {
-            this.Register(resource);
-        }
-
-        return resources.Count;
-    }
-
     public void Register(Resource<Texture2D> resource)
     {
+        Debug.Log("[ResourceManager] Registered texture: " + resource.ID);
         this._textures.Add(resource.ID, resource);
     }
 
@@ -88,6 +86,7 @@ public class ResourceManager
 
     public void Register(Resource<Tilemap> resource)
     {
+        Debug.Log("[ResourceManager] Registered tilemap: " + resource.ID);
         this._tilemaps.Add(resource.ID, resource);
     }
 
@@ -103,6 +102,7 @@ public class ResourceManager
 
     public void Register(Resource<Translation> resource)
     {
+        Debug.Log("[ResourceManager] Registered translation: " + resource.ID);
         this._translations.Add(resource.ID, resource);
     }
 
@@ -128,13 +128,6 @@ public class ResourceManager
         Resource<Sound> sound;
         this._sounds.TryGetValue(name, out sound);
         return sound;
-    }
-
-    public Resource<Sprite> GetSprite(string name)
-    {
-        Resource<Sprite> sprite;
-        this._sprites.TryGetValue(name, out sprite);
-        return sprite;
     }
 
     public Resource<Texture2D> GetTexture(string name)

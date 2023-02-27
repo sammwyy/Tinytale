@@ -15,7 +15,7 @@ public class ResourceLoader
             string[] files = Directory.GetFiles(directory, pattern, SearchOption.AllDirectories);
             foreach (string file in files)
             {
-                string id = prefix + ":" + file.Replace(directory, "").Split(".")[0];
+                string id = prefix + ":" + file.Replace(directory, "").Split(".")[0].Replace("\\", "/");
                 Resource<T> resource = new Resource<T>(id, file);
                 list.Add(resource);
             }
@@ -29,6 +29,7 @@ public class ResourceLoader
         int added = 0;
         added += manager.RegisterAll(ScanDirectory<Map>(prefix, Path.Combine(directory, "maps"), "*.map"));
         added += manager.RegisterAll(ScanDirectory<Sound>(prefix, Path.Combine(directory, "sounds"), "*.wav"));
+        added += manager.RegisterAll(ScanDirectory<Texture2D>(prefix, Path.Combine(directory, "textures"), "*.jpg"));
         added += manager.RegisterAll(ScanDirectory<Texture2D>(prefix, Path.Combine(directory, "textures"), "*.png"));
         added += manager.RegisterAll(ScanDirectory<Tilemap>(prefix, Path.Combine(directory, "tiles"), "*.tilemap"));
         added += manager.RegisterAll(ScanDirectory<Translation>(prefix, Path.Combine(directory, "i18n"), "*.lang"));

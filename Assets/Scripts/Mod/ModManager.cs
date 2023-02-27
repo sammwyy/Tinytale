@@ -21,10 +21,10 @@ public class ModManager
     public Mod Load(string path)
     {
         Mod mod = new Mod(path);
-        Debug.Log("Preparing mod load of " + path);
+        Debug.Log("[ModManager] Preparing mod load of " + path);
         mod.Load();
         this.mods.Add(mod.Descriptor.id, mod);
-        Debug.Log("Loaded mod " + mod.Descriptor.id + " under " + path);
+        Debug.Log("[ModManager] Loaded mod " + mod.Descriptor.id + " under " + path);
         return mod;
     }
 

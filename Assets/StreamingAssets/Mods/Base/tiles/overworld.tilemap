@@ -1,0 +1,42 @@
+{
+  "tiles": [
+    {
+      "id": "0",
+      "texture": "tinytale:tiles/overworld/0",
+      "collision": false
+    },
+    {
+      "id": "1",
+      "texture": "tinytale:tiles/overworld/1"
+    },
+    {
+      "id": "2",
+      "texture": "tinytale:tiles/overworld/2"
+    },
+    {
+      "id": "3",
+      "texture": "tinytale:tiles/overworld/3"
+    },
+    {
+      "id": "4",
+      "texture": "tinytale:tiles/overworld/4",
+      "collision": true
+    },
+    {
+      "id": "5",
+      "texture": "tinytale:tiles/overworld/5"
+    },
+    {
+      "id": "6",
+      "texture": "tinytale:tiles/overworld/6"
+    },
+    {
+      "id": "7",
+      "texture": "tinytale:tiles/overworld/7"
+    },
+    {
+      "id": "8",
+      "texture": "tinytale:tiles/overworld/8"
+    }
+  ]
+}

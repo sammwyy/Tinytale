@@ -1,17 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundSystem : MonoBehaviour
 {
-    private static SoundSystem _instance;
-
-    public static SoundSystem Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
 
     [SerializeField]
     private AudioSource bgmSource;
@@ -19,30 +9,25 @@ public class SoundSystem : MonoBehaviour
     [SerializeField]
     private AudioSource sfxSource;
 
-    void Awake()
+    public void PlayBGM(AudioClip clip)
     {
-        _instance = this;
+        bgmSource.clip = clip;
+        bgmSource.Play();
     }
 
-    public static void PlayBGM(AudioClip clip)
-    {
-        _instance.bgmSource.clip = clip;
-        _instance.bgmSource.Play();
-    }
-
-    public static void PlayBGM(Sound sound)
+    public void PlayBGM(Sound sound)
     {
         PlayBGM(sound.Clip);
     }
 
-    public static void PlayBGM(Resource<Sound> sound)
+    public void PlayBGM(Resource<Sound> sound)
     {
         PlayBGM(sound.get());
     }
 
 
-    public static void PlaySFX(AudioClip clip)
+    public void PlaySFX(AudioClip clip)
     {
-        _instance.sfxSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip);
     }
 }
