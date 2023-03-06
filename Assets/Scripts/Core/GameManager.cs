@@ -1,8 +1,19 @@
 using System.IO;
 using UnityEngine;
 
+public enum GameState
+{
+    MENU,
+    IN_GAME,
+    COMBAT,
+}
+
 public class GameManager : MonoBehaviour
 {
+    [Header("Game state")]
+    public GameState State;
+
+    [Header("Important game objects")]
     public SmoothCamera Camera;
     public Player Player;
     public SoundSystem SoundSystem;
@@ -11,6 +22,31 @@ public class GameManager : MonoBehaviour
     public ModManager ModManager;
     public ResourceManager ResourceManager;
     public ScriptEngine ScriptEngine;
+
+    public bool IsInCombat
+    {
+        get
+        {
+
+            return this.State == GameState.COMBAT;
+        }
+    }
+
+    public bool IsInGame
+    {
+        get
+        {
+            return this.State == GameState.IN_GAME || this.State == GameState.COMBAT;
+        }
+    }
+
+    public bool IsGamePaused
+    {
+        get
+        {
+            return this.IsInGame; // Todo: Check if is in UI.
+        }
+    }
 
     void Awake()
     {

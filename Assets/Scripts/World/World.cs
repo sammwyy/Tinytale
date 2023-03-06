@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class World : MonoBehaviour
@@ -5,20 +6,28 @@ public class World : MonoBehaviour
     private Map _map;
 
     [SerializeField]
+    private List<WorldTile> _tiles;
+    [SerializeField]
     private GameObject _tilePrefab;
 
-    public void KillChildren()
+    public void Start()
     {
-        foreach (GameObject child in this.transform)
+        this._tiles = new List<WorldTile>();
+    }
+
+    public void UnloadMap()
+    {
+        foreach (WorldTile tile in this._tiles)
         {
-            Destroy(child);
+            Destroy(tile.gameObject);
         }
+
+        this._tiles.Clear();
     }
 
     public void LoadMap(Map map)
     {
-        this.KillChildren();
-
+        this.UnloadMap();
         this._map = map;
 
         foreach (MapLayer layer in map.layers)
@@ -34,6 +43,8 @@ public class World : MonoBehaviour
                     worldTile.SetLayer(layer.id);
                     worldTile.SetPosition(item.x, item.y);
                     worldTile.SetTile(item.GetTile());
+
+                    this._tiles.Add(worldTile);
                 }
             }
 

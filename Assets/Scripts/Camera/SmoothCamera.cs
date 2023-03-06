@@ -9,10 +9,10 @@ public class SmoothCamera : MonoBehaviour
     private float FollowRange = 1;
     [SerializeField]
     private float FollowSpeed = 2;
-    private Entity _followTarget;
+    private GameObject _followTarget;
     private bool _following;
 
-    public void Follow(Entity entity)
+    public void Follow(GameObject entity)
     {
         this._followTarget = entity;
     }
